@@ -1,0 +1,43 @@
+[global]
+        workgroup = {{.Workgroup}}
+        realm = {{.Realm}}
+        netbios name = {{.NetbiosName}}
+        security = ADS
+        {{- if .DnsForwarder }}
+        dns forwarder = {{.DnsForwarder}}
+        {{- end}}
+
+idmap config * : backend = tdb
+idmap config *:range = 50000-1000000
+
+   template homedir = /home/%D/%U
+   template shell = /bin/bash
+   winbind use default domain = true
+   winbind offline logon = false
+   winbind nss info = rfc2307
+   winbind enum users = yes
+   winbind enum groups = yes
+
+  vfs objects = acl_xattr
+  map acl inherit = Yes
+  store dos attributes = Yes
+
+
+load printers = no
+printing = bsd
+printcap name = /dev/null
+disable spoolss = yes
+
+
+{{range .SambaShareList}}
+[{{.Name}}]
+  comment = {{.Comment}}
+  path = {{.Path}}
+  valid users = {{.ValidUsers}}
+  guest ok = {{.GuestOk}}
+  writable = {{.Writable}}
+  force user = {{.ForceUser}}
+  force group = {{.ForceGroup}}
+{{end}}
+
+
