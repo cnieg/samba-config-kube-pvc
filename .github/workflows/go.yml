@@ -13,12 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Publish to Registry
+      - name: Build Docker & Publish
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: cnieg/github.com/cnieg/samba-config-kube-pvc
+          name: cnieg/samba-config-kube-pvc
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          snapshot: true
 
       - name: Create Release
         id: create_release
@@ -32,6 +33,14 @@ jobs:
             Samba config kube pvc 1.0.${{ github.run_number }}
           draft: false
           prerelease: false
+
+      - name: Publish Docker release
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: cnieg/samba-config-kube-pvc
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          tags: 1.0.${{ github.run_number }}
 
       - name: Upload Linux Release Asset
         id: upload-linux-release-asset
