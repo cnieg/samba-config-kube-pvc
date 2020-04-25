@@ -74,7 +74,7 @@ func main() {
 	var defaultForceGroup = flag.String("defaultForceGroup", "root", "Group used by samba to edit file when a user edit files under the share (default: root)")
 	var writable = flag.String("writable", "yes", "Writable share for users, yes or no (default: no)")
 	var guestOk = flag.String("guestOk", "no", "Grant access to user anonymous, yes or no (default: no)")
-	var defaultValidUsers = flag.String("defaultValidUsers", "", "Groups autorized to access to the share, it can be locals user to the server or AD Group, list separated by comma (default: ''")
+	var defaultValidUsers = flag.String("defaultValidUsers", "", "Groups autorized to access to the share, it can be locals user to the server or AD Group, list separated by comma (default: '')")
 
 	var smbConfPath = flag.String("smbConfPath", "/etc/samba/smb.conf", "Path to the smb config file (default: /etc/samba/smb.conf)")
 	var tmpDir = flag.String("tmpDir", "./tmp", "Working directory target for templating (default: ./tmp)")

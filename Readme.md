@@ -15,7 +15,7 @@ It will get the some information on all pvcs filtered by the annotation as :
 With all of this informations and some parameters this will build a samba configuration derived from the template : [smb.conf.tmpl](./resources/template-samba-config/smb.conf.tmpl)
 
 ## Usage
-Command line arguments :
+Usage of /app/samba-config-kube-pvc:
 
 ```
   -annotationsToWatch string
@@ -25,7 +25,7 @@ Command line arguments :
   -defaultForceUser string
         User used by samba to edit file when a user edit files under the share (default: root) (default "root")
   -defaultValidUsers string
-        Groups autorized to access to the share, it can be locals user to the server or AD Group (default: ''
+        Groups autorized to access to the share, it can be locals user to the server or AD Group, list separated by comma (default: '')
   -dnsForwarder string
         IP of your dns server (default: '')
   -guestOk string
@@ -35,7 +35,7 @@ Command line arguments :
   -kubeconfig string
         Path to your kubeconfig file for auth to kube (default: $HOME/.kube/config) (default "/.kube/config")
   -netbiosName string
-        Name of your machine (default: hostname of your machine) (default "2b17160ab166")
+        Name of your machine (default: hostname of your machine) (default "8f1e32552b69")
   -nfsMountPoint string
          Mount point on your server to your nfs share (mandatory)
   -period duration
@@ -50,8 +50,6 @@ Command line arguments :
         Workgroup name of your domain (default: workgroup) (default "WORKGROUP")
   -writable string
         Writable share for users, yes or no (default: no) (default "yes")
-
-
  ```
 
 ## Requirements
@@ -130,12 +128,11 @@ Restart=on-failure
 RestartSec=10
 startLimitIntervalSec=60
 TimeoutStartSec=0
-Environment="IMAGE_TAG=v1.0.0"
-Environment="ARGS=-nfsMountPoint=/mnt/nfs-volumes-kube-server -realm=MYREALM -defaultValidUsers=GG_ADMINS,@GG_USERS_WRITE"
+Environment="IMAGE_TAG=v1.0.20"
 ExecStartPre=-/usr/bin/docker stop samba-config-kube-pvc
 ExecStartPre=-/usr/bin/docker rm samba-config-kube-pvc
 ExecStartPre=/usr/bin/docker pull cnieg/samba-config-kube-pvc:${IMAGE_TAG}
-ExecStart=/usr/bin/docker run --rm --name samba-config-kube-pvc -v /root/.kube:/.kube -v /etc/samba:/etc/samba cnieg/samba-config-kube-pvc:${IMAGE_TAG} $ARGS 
+ExecStart=/usr/bin/docker run --rm --name samba-config-kube-pvc -v /root/.kube:/.kube -v /etc/samba:/etc/samba cnieg/samba-config-kube-pvc:${IMAGE_TAG} -nfsMountPoint=/mnt/nfs-volumes-kube-server -realm=MYREALM -defaultValidUsers=GG_ADMINS,@GG_USERS_WRITE
 
 [Install]
 WantedBy=multi-user.target
