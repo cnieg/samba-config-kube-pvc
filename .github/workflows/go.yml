@@ -16,7 +16,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: cnieg/github.com/cnieg/go-samba-config-controller
+          name: cnieg/github.com/cnieg/samba-config-kube-pvc
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -29,7 +29,7 @@ jobs:
           tag_name: v1.0.${{ github.run_number }}
           release_name: Release v1.0.${{ github.run_number }}
           body: |
-            Go samba config controller 1.0.${{ github.run_number }}
+            Samba config kube pvc 1.0.${{ github.run_number }}
           draft: false
           prerelease: false
 
@@ -40,7 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: .release/jahia-tools_linux_amd64
-          asset_name: jahia-tools_linux_amd64
+          asset_path: .release/samba-config-kube-pvc
+          asset_name: samba-config-kube-pvc_linux_amd64
           asset_content_type: application/octet-stream
 
