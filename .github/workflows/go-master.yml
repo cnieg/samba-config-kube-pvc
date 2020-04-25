@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      ‐ name: Build docker
+      - name: Build docker
         id: build
         uses: docker/build-push-action@v1
         with:
@@ -29,7 +29,7 @@ jobs:
           tag_name: v1.0.${{ github.run_number }}
           release_name: Release v1.0.${{ github.run_number }}
           body: |
-            Samba config kube pvc 1.0.${{ github.run_number }}
+            Samba config kube pvc v1.0.${{ github.run_number }}
           draft: false
           prerelease: false
 
