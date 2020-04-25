@@ -1,4 +1,4 @@
-![.github/workflows/go.yml](https://github.com/cnieg/samba-config-kube-pvc/workflows/.github/workflows/go.yml/badge.svg)
+![Go](https://github.com/cnieg/samba-config-kube-pvc/workflows/Go/badge.svg)
 # samba-config-kube-pvc
 
 Controller to scrape nfs pvc information and generate samba config with limited access from Active Directory group
