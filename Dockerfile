@@ -8,7 +8,7 @@ RUN go mod download
 COPY . .
 
 # Build the Go src
-RUN mkdir $BIN_OUTPUT_DIRECTORY/bin
+RUN mkdir -p $BIN_OUTPUT_DIRECTORY/bin
 RUN CGO_ENABLED=0 GOOS=linux go build -o $BIN_OUTPUT_DIRECTORY/bin/samba-config-kube-pvc .
 RUN ls -altr $BIN_OUTPUT_DIRECTORY
 
