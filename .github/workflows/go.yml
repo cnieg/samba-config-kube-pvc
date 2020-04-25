@@ -16,6 +16,8 @@ jobs:
         id: build
         uses: docker/build-push-action@v1
         with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{github.repository}}
           push: true
           tag_with_ref: true
