@@ -128,11 +128,11 @@ Restart=on-failure
 RestartSec=10
 startLimitIntervalSec=60
 TimeoutStartSec=0
-Environment="IMAGE_TAG=v1.0.20"
+Environment="IMAGE_TAG=v1.0.22"
 ExecStartPre=-/usr/bin/docker stop samba-config-kube-pvc
 ExecStartPre=-/usr/bin/docker rm samba-config-kube-pvc
 ExecStartPre=/usr/bin/docker pull cnieg/samba-config-kube-pvc:${IMAGE_TAG}
-ExecStart=/usr/bin/docker run --rm --name samba-config-kube-pvc -v /root/.kube:/.kube -v /etc/samba:/etc/samba cnieg/samba-config-kube-pvc:${IMAGE_TAG} -nfsMountPoint=/mnt/nfs-volumes-kube-server -realm=MYREALM -defaultValidUsers=GG_ADMINS,@GG_USERS_WRITE
+ExecStart=/usr/bin/docker run --rm --name samba-config-kube-pvc -v /root/.kube:/.kube -v /etc/samba:/etc/samba cnieg/samba-config-kube-pvc:${IMAGE_TAG} -nfsMountPoint=/mnt/nfs-volumes-kube-server -realm=MYREALM -defaultValidUsers=GG_ADMINS,GG_USERS_WRITE
 
 [Install]
 WantedBy=multi-user.target

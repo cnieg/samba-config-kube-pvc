@@ -33,7 +33,7 @@ disable spoolss = yes
 [{{.Name}}]
   comment = {{.Comment}}
   path = {{.Path}}
-  valid users = {{range .ValidUsers}}@"{{.}}"{{end}}
+  valid users = {{range .ValidUsers}}@"{{.}}" {{end}}
   guest ok = {{.GuestOk}}
   writable = {{.Writable}}
   force user = {{.ForceUser}}
