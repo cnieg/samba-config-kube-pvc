@@ -13,7 +13,7 @@ FROM scratch
 
 WORKDIR /app/
 COPY resources/template-samba-config/ resources/template-samba-config/
-COPY --from=builder /app/samba-config-controller .
+COPY --from=builder /app/samba-config-kube-pvc .
 
 VOLUME /etc/samba/
 VOLUME /root/.kube/
