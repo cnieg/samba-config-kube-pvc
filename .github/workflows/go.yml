@@ -22,11 +22,6 @@ jobs:
           push: true
           tag_with_ref: true
           add_git_labels: true
-          build_args: BIN_OUTPUT_DIRECTORY=/github/workspace
-
-      - name: Build site assets
-        working-directory: ${{ github.workspace }}
-        run: ls -la && ls -altr bin/
 
       - name: Create Release
         id: create_release
@@ -53,17 +48,7 @@ jobs:
           push: true
           tags: v1.0.${{ github.run_number }}
           add_git_labels: true
-          build_args: BIN_OUTPUT_DIRECTORY=/github/workspace
 
-      - name: Upload Linux Release Asset
-        id: upload-linux-release-asset
-        if: github.ref == 'refs/heads/master'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: bin/samba-config-kube-pvc
-          asset_name: samba-config-kube-pvc_linux_amd64
-          asset_content_type: application/octet-stream
+
+
 
