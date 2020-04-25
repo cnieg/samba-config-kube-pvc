@@ -131,11 +131,11 @@ RestartSec=10
 startLimitIntervalSec=60
 TimeoutStartSec=0
 Environment="IMAGE_TAG=v1.0.0"
-Environment="ARGS=-nfsMountPoint=/mnt/nfs-volumes-kube-server -realm=MYREALM -defaultValidUsers='\"@GG_ADMINS\" \"@GG_USERS_WRITE\"'"
+Environment="ARGS=-nfsMountPoint=/mnt/nfs-volumes-kube-server -realm=MYREALM -defaultValidUsers=GG_ADMINS,@GG_USERS_WRITE"
 ExecStartPre=-/usr/bin/docker stop samba-config-kube-pvc
 ExecStartPre=-/usr/bin/docker rm samba-config-kube-pvc
 ExecStartPre=/usr/bin/docker pull cnieg/samba-config-kube-pvc:${IMAGE_TAG}
-ExecStart=/usr/bin/docker run --rm --name samba-config-kube-pvc -v /root/.kube:/root/.kube -v /etc/samba:/etc/samba cnieg/samba-config-kube-pvc:${IMAGE_TAG} $ARGS 
+ExecStart=/usr/bin/docker run --rm --name samba-config-kube-pvc -v /root/.kube:/.kube -v /etc/samba:/etc/samba cnieg/samba-config-kube-pvc:${IMAGE_TAG} $ARGS 
 
 [Install]
 WantedBy=multi-user.target
