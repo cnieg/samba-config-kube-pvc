@@ -12,13 +12,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - name: Build Docker & Publish
-        uses: elgohr/Publish-Docker-Github-Action@master
+      ‐ name: Build docker
+        id: build
+        uses: docker/build-push-action@v1
         with:
-          name: cnieg/samba-config-kube-pvc
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          tags: ${{GITHUB_REF##*/}}-${{ github.run_number }}
+          repository: ${{GITHUB_REPOSITORY}}
+          push: false
+          tag_with_ref: true
 
 
 
