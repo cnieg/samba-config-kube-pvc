@@ -22,7 +22,7 @@ jobs:
           push: true
           tag_with_ref: true
           add_git_labels: true
-          build_args: BIN_OUTPUT_DIRECTORY=/github/workspace/bin
+          build_args: BIN_OUTPUT_DIRECTORY=/github/workspace
 
       - name: Build site assets
         working-directory: ${{ github.workspace }}
@@ -53,7 +53,7 @@ jobs:
           push: true
           tags: v1.0.${{ github.run_number }}
           add_git_labels: true
-          build_args: BIN_OUTPUT_DIRECTORY=/github/workspace/bin
+          build_args: BIN_OUTPUT_DIRECTORY=/github/workspace
 
       - name: Upload Linux Release Asset
         id: upload-linux-release-asset

@@ -8,14 +8,16 @@ RUN go mod download
 COPY . .
 
 # Build the Go src
-RUN CGO_ENABLED=0 GOOS=linux go build -o $BIN_OUTPUT_DIRECTORY/samba-config-kube-pvc .
+RUN mkdir $BIN_OUTPUT_DIRECTORY/bin
+RUN CGO_ENABLED=0 GOOS=linux go build -o $BIN_OUTPUT_DIRECTORY/bin/samba-config-kube-pvc .
+RUN ls -altr $BIN_OUTPUT_DIRECTORY
 
 FROM scratch
 ARG BIN_OUTPUT_DIRECTORY="/app/samba-config-kube-pvc"
 
 WORKDIR /app/
 COPY resources/template-samba-config/ resources/template-samba-config/
-COPY --from=builder $BIN_OUTPUT_DIRECTORY/samba-config-kube-pvc .
+COPY --from=builder $BIN_OUTPUT_DIRECTORY/bin/samba-config-kube-pvc .
 
 VOLUME /etc/samba/
 VOLUME /root/.kube/
