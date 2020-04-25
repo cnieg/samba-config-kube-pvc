@@ -24,6 +24,10 @@ jobs:
           add_git_labels: true
           build_args: BIN_OUTPUT_DIRECTORY=/github/workspace/bin
 
+      - name: Build site assets
+        working-directory: ${{ github.workspace }}
+        run: ls -la && ls -altr bin/
+
       - name: Create Release
         id: create_release
         if: github.ref == 'refs/heads/master'
