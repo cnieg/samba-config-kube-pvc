@@ -21,6 +21,8 @@ jobs:
           repository: ${{github.repository}}
           push: true
           tag_with_ref: true
+          add_git_labels: true
+          build_args: BIN_OUTPUT_DIRECTORY=/github/workspace/bin
 
       - name: Create Release
         id: create_release
@@ -45,7 +47,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{github.repository}}
           push: true
-          tag_with_ref: true
+          tags: v1.0.${{ github.run_number }}
+          add_git_labels: true
+          build_args: BIN_OUTPUT_DIRECTORY=/github/workspace/bin
 
       - name: Upload Linux Release Asset
         id: upload-linux-release-asset
@@ -55,7 +59,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: .release/samba-config-kube-pvc
+          asset_path: bin/samba-config-kube-pvc
           asset_name: samba-config-kube-pvc_linux_amd64
           asset_content_type: application/octet-stream
 
