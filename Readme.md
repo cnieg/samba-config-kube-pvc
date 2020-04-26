@@ -66,7 +66,7 @@ sudo apt update
 sudo apt install docker-ce
 ```
 
-You should have a kubernetes service account with the grand to list PVCS, if you don't have you can apply manifests under [resources/kubernetes-roles](./resources/kubernetes-roles)  :
+You should have a kubernetes service account with the grant to list PVCS, if you don't have you can apply manifests under [resources/kubernetes-roles](./resources/kubernetes-roles)  :
 ```bash
 kubectl apply -f kubernetes
 ```
