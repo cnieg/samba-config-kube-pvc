@@ -128,7 +128,7 @@ Restart=on-failure
 RestartSec=10
 startLimitIntervalSec=60
 TimeoutStartSec=0
-Environment="IMAGE_TAG=v1.0.22"
+Environment="IMAGE_TAG=v1.0.34"
 ExecStartPre=-/usr/bin/docker stop samba-config-kube-pvc
 ExecStartPre=-/usr/bin/docker rm samba-config-kube-pvc
 ExecStartPre=/usr/bin/docker pull cnieg/samba-config-kube-pvc:${IMAGE_TAG}
