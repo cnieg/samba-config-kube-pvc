@@ -1,4 +1,4 @@
-![Go](https://github.com/cnieg/samba-config-kube-pvc/workflows/Go/badge.svg)[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=cnieg/samba-config-kube-pvc)](https://dependabot.com)
+![Go](https://github.com/cnieg/samba-config-kube-pvc/workflows/Go/badge.svg)[![Renovate enabled](https://img.shields.io/badge/maintained%20with-renovate-blue?logo=renovatebot)](https://renovatebot.com/)
 # samba-config-kube-pvc
 
 Controller to scrape nfs pvc information and generate samba config with limited access from Active Directory group
